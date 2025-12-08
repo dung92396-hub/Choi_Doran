@@ -13,7 +13,7 @@ public class MyFIFO_App {
     }
 
     public static <E> void mirror(Queue<E> input) {
-
+        System.out.println("Day la code cua gia huy ne heheheheeh");
     }
 
     public static void main(String[] args) {
