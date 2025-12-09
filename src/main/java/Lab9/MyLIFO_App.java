@@ -11,7 +11,7 @@ public class MyLIFO_App {
         }
     }
 
-    public boolean isCorrect(String s) {
+    public static boolean isCorrect(String s) {
         if (s.charAt(0) == ')' || s.charAt(0) == '}' || s.charAt(0) == ']')
             return false;
         Stack<Character> st = new Stack<Character>();
@@ -122,6 +122,8 @@ public class MyLIFO_App {
     }
 
     public static void main(String[] args) {
-
+        reserve(new Integer[] {1, 2, 3, 4, 5});
+        System.out.println(evaluateExpression("1 + 2 * (3 + 5)"));
+        System.out.println(isCorrect("()()()({}[])"));
     }
 }
