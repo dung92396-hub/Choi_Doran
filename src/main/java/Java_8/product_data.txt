@@ -1,0 +1,5 @@
+1   Thit ba roi     Thuc pham   12
+2   Ca     Thuc pham   8
+3   Rau     Thuc pham   4
+4   Trai cay     Thuc pham   6
+5   Thit ba roi     Thuc pham   12
