@@ -24,6 +24,7 @@ public class Order {
     }
 
     /**
+     * 1)
      * tinh tong thanh tien trong bill
      * .map() chi lay thanh tien cua 1 san pham
      * .reduce() tong gia tien voi 0.0 la gia tri khoi tao, ::sum la yeu cau tinh tong
@@ -44,6 +45,7 @@ public class Order {
                 .toList();
     }
 
+    // 2)
     // kiem tra danh muc (category) co ton tai trong cac sp
     // .anyMatch(): pthuc nay kiem tra danh muc co ton tai hay khong
     public boolean isExistedCategory(String category) {
@@ -52,6 +54,7 @@ public class Order {
                 .anyMatch(item -> item.getP().getCategory().equals(category));
     }
 
+    // 3)
     // loc ra san pham co danh muc yeu cau va gia tien > threshold
     public List<Product> getProducts(String category, double threshold) {
         return this.items.stream()
@@ -60,6 +63,7 @@ public class Order {
                 .toList();
     }
 
+    // 4)
     // peek(): duyet qua cac phan tu va thay doi gia tri
     public List<Product> getProductsByCategory10PercentPrice(String category) {
         return this.items.stream()
@@ -69,6 +73,7 @@ public class Order {
                 .toList();
     }
 
+    // 5)
     // map(): chi lay ra san pham de duyet
     // loc ra sp co danh muc yeu cau
     // min(): tim ra san pham co cost re nhat
@@ -81,6 +86,7 @@ public class Order {
                 .orElseThrow();
     }
 
+    // 6)
     public Map<String, List<Product>> groupByCategory() {
         Map<String, List<Product>> map = new HashMap<>();
         this.items.stream()
@@ -92,6 +98,8 @@ public class Order {
         return map;
     }
 
+
+    // 7)
     public Map<String, Product> getMostExpensiveProductByCategory() {
         Map<String, Product> map = new HashMap<>();
         var group = this.groupByCategory();

@@ -15,6 +15,8 @@ public class OrderManager {
         this.orders.add(o);
     }
 
+
+    // 8)
     public List<Order> getAllOrdersBasedOnCategory(String category) {
 
         return orders
@@ -22,6 +24,8 @@ public class OrderManager {
                 .filter(order -> order.isExistedCategory(category))
                 .toList();
     }
+
+    // 9)
     // flatMap(): trai du lieu ra: chuyen ma tran thanh mang 1 chieu
     public List<Product> getAllProductsOrderByTierOn(int tier, LocalDate from, LocalDate to) {
         return this.orders
@@ -35,6 +39,7 @@ public class OrderManager {
     }
 
 
+    // 10)
     // sort theo giam dan va lay 3 cai dau tien (dung limit(n))
     // cach nay hieu suat khong cao lam
     public List<Order> get3RecentOrders(int n) {
@@ -46,6 +51,7 @@ public class OrderManager {
     }
 
 
+    // 11)
     public List<Product> getProductsByOrderedDate(LocalDate date) {
         return this.orders
                 .stream()
@@ -54,6 +60,7 @@ public class OrderManager {
                 .toList();
     }
 
+    // 12)
     public double costOrderIn(LocalDate date) {
         return this.orders
                 .stream()
@@ -62,6 +69,7 @@ public class OrderManager {
                 .reduce(0.0, Double::sum);
     }
 
+    // 13)
     public double getAverageCostOrderOn(LocalDate date) {
         int count = this.orders
                 .stream()
@@ -72,6 +80,7 @@ public class OrderManager {
         return this.costOrderIn(date) / count;
     }
 
+    // 14)
     // code nay hoi kho giai thich
     // noi chung la dung collection de chuyen sang hashmap chi voi 1 dong duy nhat toMap(key, value)
     public Map<Long, Integer> getStatisticOrder() {
@@ -87,6 +96,7 @@ public class OrderManager {
                         ));
     }
 
+    // 15)
     // cai nay thi nhom nhung value co key trung lap (nay giong truy van tren SQL)
     public Map<Customer, List<Order>> getStatisticsOrderByCustomers() {
         return this.orders
