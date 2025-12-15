@@ -37,7 +37,7 @@ public class Main {
 
     public static void main(String[] args) {
         try {
-            join("C:\\Users\\Admin\\Documents\\test", "C:\\Users\\Admin\\Documents\\test-java\\src\\main\\java\\Java_set\\test\\joined.pdf");
+            join("C:\\Users\\Admin\\Downloads\\test", "C:\\Users\\Admin\\Documents\\test-java\\src\\main\\java\\Java_set\\test\\video.mp4");
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
