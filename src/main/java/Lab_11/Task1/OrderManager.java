@@ -1,6 +1,5 @@
 package Lab_11.Task1;
 
-import java.time.LocalDate;
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -39,17 +38,15 @@ public class OrderManager {
     }
 
     public HashMap<String, Integer> productTypesStatistics() {
-        HashMap<String, Integer> map = new HashMap<>();
-        var orderItems = orders
+        return orders
                 .stream()
-                .map(Order::getItems)
-                .flatMap(Collection::stream)
-                .toList();
-        orderItems.forEach(o -> {
-            map.putIfAbsent(o.getItem().getType(), 1);
-            map.put(o.getItem().getType(), map.get(o.getItem().getType()) + 1);
-        });
-        return map;
+                .flatMap(o -> o.getItems().stream())
+                .collect(Collectors.toMap(
+                        OrderItem::getType,
+                        OrderItem::getAmount,
+                        Integer::sum,
+                        HashMap::new
+                ));
     }
 
 
