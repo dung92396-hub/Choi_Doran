@@ -35,37 +35,50 @@ public class NetflixPlatform {
 
     // 1) YÊU CẦU: Lọc danh sách phim theo thể loại (genre) và trả về danh sách mới, sắp xếp theo ngày phát hành tăng dần
     public List<Film> filterByGenre(Genre genre) {
-        // TODO: implement
-        return Collections.emptyList();
+        return this.films
+                .stream()
+                .filter(film -> film.getGenre().equals(genre))
+                .toList();
     }
 
     // 2) YÊU CẦU: Tìm phim theo mã (code) trả về Optional<Film>
     public Optional<Film> findByCode(String code) {
         // TODO: implement
-        return Optional.empty();
+        return this.films
+                .stream()
+                .filter(film -> film.getCode().equals(code))
+                .findFirst();
     }
 
     // 3) YÊU CẦU: Lọc phim có điểm score10 >= minScore, trả về danh sách mới, sắp xếp theo score10 giảm dần, rồi theo tên
     public List<Film> filterByScore(double minScore) {
-        // TODO: implement
-        return Collections.emptyList();
+        return this.films
+                .stream()
+                .filter(film -> film.getScore10() >= minScore)
+                .sorted(Comparator.comparing(Film::getScore10, Comparator.reverseOrder()).thenComparing(Film::getName))
+                .toList();
     }
 
     // 4) YÊU CẦU: Dùng HashMap group theo quốc gia -> danh sách phim của quốc gia đó
     public Map<Country, List<Film>> groupByCountry() {
-        // TODO: implement using HashMap
-        return new HashMap<>();
+        return this.films
+                .stream()
+                .collect(Collectors.groupingBy(Film::getCountry));
     }
 
     // 5) YÊU CẦU: Dùng TreeMap group theo năm phát hành -> số lượng phim trong năm đó (sắp xếp theo năm tăng dần)
     public Map<Integer, Long> countByYear() {
-        // TODO: implement using TreeMap
-        return new TreeMap<>();
+        return this.films
+                .stream()
+                .collect(Collectors.groupingBy(
+                        Film::getReleaseYear,
+                        TreeMap::new,
+                        Collectors.counting()
+                ));
     }
 
     // 6) YÊU CẦU: Trả về Set<String> gồm tất cả mã phim (code) duy nhất (dùng HashSet)
     public Set<String> uniqueCodes() {
-        // TODO: implement using HashSet
         return new HashSet<>();
     }
 

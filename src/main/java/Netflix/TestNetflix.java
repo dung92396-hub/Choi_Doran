@@ -40,9 +40,6 @@ public class TestNetflix {
         NetflixPlatform platform = new NetflixPlatform("NetflixVN");
         platform.addAll(films);
 
-
-
-
-
+        System.out.println(platform.filterByGenre(Genre.KHAM_PHA));
     }
 }

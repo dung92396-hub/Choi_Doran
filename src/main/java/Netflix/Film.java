@@ -30,6 +30,7 @@ public abstract class Film {
     public double getStarRating() { return starRating; }
     public double getScore10() { return score10; }
     public LocalDate getReleaseDate() { return releaseDate; }
+    public int getReleaseYear() { return releaseDate.getYear(); }
     public Genre getGenre() { return genre; }
     public int getAgeRequired() { return ageRequired; }
     public Country getCountry() { return country; }
