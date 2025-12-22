@@ -1,5 +1,6 @@
 package Netflix;
 
+import java.io.File;
 import java.util.*;
 import java.util.function.Function;
 import java.util.stream.Collectors;
@@ -79,25 +80,34 @@ public class NetflixPlatform {
 
     // 6) YÊU CẦU: Trả về Set<String> gồm tất cả mã phim (code) duy nhất (dùng HashSet)
     public Set<String> uniqueCodes() {
-        return new HashSet<>();
+        return this.films
+                .stream()
+                .map(Film::getCode)
+                .collect(Collectors.toSet());
     }
 
     // 7) YÊU CẦU: Trả về TreeSet<String> gồm tên phim duy nhất, sắp xếp theo tự nhiên (alphabet)
     public Set<String> uniqueNamesSorted() {
-        // TODO: implement using TreeSet
-        return new TreeSet<>();
+        return this.films
+                .stream()
+                .map(Film::getName)
+                .collect(Collectors.toCollection(TreeSet::new));
     }
 
     // 8) YÊU CẦU: Dùng TreeMap<Genre, Double> tính điểm trung bình (score10) theo thể loại, làm tròn 2 chữ số
     public Map<Genre, Double> averageScoreByGenre() {
-        // TODO: implement using TreeMap
-        return new TreeMap<>();
+        return null;
     }
 
     // 9) YÊU CẦU: Tìm top N phim có score10 cao nhất, nếu bằng điểm thì ưu tiên ngày phát hành gần đây hơn
     public List<Film> topNByScore(int n) {
-        // TODO: implement
-        return Collections.emptyList();
+        return films
+                .stream()
+                .sorted(Comparator
+                        .comparing(Film::getScore10)
+                        .thenComparing(Film::getReleaseDate))
+                .limit(n)
+                .toList();
     }
 
     // 10) YÊU CẦU: Trả về Map<String, Film> ánh xạ code -> Film (nếu trùng code thì lấy phim có score10 cao hơn)
@@ -114,14 +124,18 @@ public class NetflixPlatform {
 
     // 12) YÊU CẦU: Dùng HashMap<Country, Set<Genre>>: mỗi quốc gia -> set các thể loại đã sản xuất
     public Map<Country, Set<Genre>> genresProducedByCountry() {
-        // TODO: implement using HashMap and HashSet
         return new HashMap<>();
     }
 
     // 13) YÊU CẦU: Trả về TreeSet<Film> sắp xếp theo (score10 giảm dần, rồi theo name tăng) - gợi ý dùng Comparator
     public Set<Film> asSortedSetByScoreThenName() {
-        // TODO: implement using TreeSet with custom comparator
-        return new TreeSet<>(Comparator.comparing(Film::getName)); // placeholder comparator
+        return films
+                .stream()
+                .collect(
+                        Collectors.toCollection(() -> new TreeSet<>(
+                                Comparator
+                                        .comparing(Film::getScore10, Comparator.reverseOrder()).thenComparing(Film::getName)))
+                );
     }
 
     // 14) YÊU CẦU: Dùng TreeMap<Genre, List<Film>> sắp xếp key theo Genre tự nhiên, value là danh sách phim trong từng genre sắp xếp theo tên
