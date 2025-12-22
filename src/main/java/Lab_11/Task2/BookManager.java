@@ -11,8 +11,6 @@ public class BookManager {
         books = new ArrayList<>();
     }
 
-    // may phuong thuc tu 1 toi 5 don gian mot code sau gio luoi qua
-
     public int totalOfBookPrice() {
         return books
                 .stream()
@@ -20,8 +18,8 @@ public class BookManager {
                 .reduce(0, Integer::sum);
     }
 
-    public ReferenceBook maxActPageNumber() {
-        return (ReferenceBook) books
+    public Book maxActPageNumber() {
+        return books
                 .stream()
                 .filter(b -> b instanceof ReferenceBook)
                 .max(Comparator.comparingInt(r -> ((ReferenceBook) r).maxActPageNumber()))

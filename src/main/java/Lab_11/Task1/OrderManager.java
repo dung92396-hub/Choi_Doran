@@ -19,8 +19,7 @@ public class OrderManager {
     public Product maxProduct() {
         return orders
                 .stream()
-                .map(Order::getItems)
-                .flatMap(Collection::stream)
+                .flatMap(order -> order.getItems().stream())
                 .map(OrderItem::getItem)
                 .max(Comparator.comparingInt(Product::getPrice))
                 .orElseThrow();

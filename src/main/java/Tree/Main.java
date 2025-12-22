@@ -12,8 +12,5 @@ public class Main {
                         new TreeNode(6),
                         new TreeNode(7)
                 ));
-
-        root.inOrder();
-
     }
 }

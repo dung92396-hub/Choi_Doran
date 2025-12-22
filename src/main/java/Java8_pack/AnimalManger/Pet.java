@@ -29,6 +29,16 @@ public class Pet {
                 .anyMatch(d -> d.isBefore(date));
     }
 
+    public boolean isBetween(LocalDate start, LocalDate end) {
+        return history
+                .stream()
+                .anyMatch(d -> d.isAfter(start) && d.isBefore(end));
+    }
+
+    public int historySize() {
+        return history.size();
+    }
+
     public String getName() {
         return name;
     }

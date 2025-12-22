@@ -1,0 +1,19 @@
+tạo cho tôi các lớp theo yêu cầu dưới đây
+
+Game:
+String id
+String name
+String type
+LocalDate publishedYear
+List<String> tags
+double price
+
+GameManager
+String name
+List<Game> games
+List<User> users
+
+User
+String id
+String name
+List<Game> storage

@@ -23,11 +23,33 @@ public class TreeNode {
         if (this.left != null) {
             this.left.inOrder();
         }
+        System.out.print(this.value + " ");
         if (this.right != null) {
             this.right.inOrder();
         }
-        System.out.println(this.value);
     }
+
+    public void postOrder() {
+        if (this.left != null) {
+            this.left.postOrder();
+        }
+        if (this.right != null) {
+            this.right.postOrder();
+        }
+        System.out.print(this.value + " ");
+    }
+
+    public void preOrder() {
+        System.out.print(this.value + " ");
+        if (this.left != null) {
+            this.left.preOrder();
+        }
+        if (this.right != null) {
+            this.right.preOrder();
+        }
+    }
+
+
 
     public int getValue() {
         return value;

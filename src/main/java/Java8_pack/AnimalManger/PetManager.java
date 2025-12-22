@@ -1,8 +1,8 @@
 package Java8_pack.AnimalManger;
 
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
+import java.util.stream.Collectors;
 
 public class PetManager {
     private List<Pet> pets;
@@ -25,6 +25,31 @@ public class PetManager {
     // lọc ra các vật nuôi là chó
     public List<Pet> filterDogPets() {
         return null;
+    }
+
+    // Med.
+
+    // xắp xếp các vật nuôi theo thứ tự tăng dần dựa trên độ tuôi
+    public List<Pet> sortPetByOld() {
+        return pets.
+                stream()
+                .sorted(Comparator.comparing(Pet::getOld))
+                .toList();
+    }
+
+    // thống kê thú nuôi dựa trên tình trạng sức khoẻ
+    public Map<Type, List<Pet>> mapHealth() {
+        return pets
+                .stream()
+                .collect(Collectors.groupingBy(Pet::getType));
+    }
+
+    // tìm ra thú nuôi có lịch sử khám nhiều nhất
+    public Pet maxPetHistory() {
+        return pets
+                .stream()
+                .max(Comparator.comparing(Pet::historySize))
+                .orElseThrow();
     }
 
     // lọc ra các vật nuôi có ngày khám trước dd/mm/yyyy
