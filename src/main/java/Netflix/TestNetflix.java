@@ -8,7 +8,7 @@ import java.util.List;
 
 public class TestNetflix {
     // Moved logic đọc dữ liệu (mở file films.txt) sang phương thức riêng
-    private static InputStream openFilmsInput() throws Exception {
+    public static InputStream openFilmsInput() throws Exception {
         InputStream in = Thread.currentThread().getContextClassLoader().getResourceAsStream("film2.txt");
         if (in == null) in = TestNetflix.class.getResourceAsStream("/film2.txt");
         if (in == null) {
@@ -22,7 +22,7 @@ public class TestNetflix {
     }
 
     // Helper: đọc dữ liệu từ films.txt và parse thành danh sách Film
-    private static List<Film> loadFilms() throws Exception {
+    public static List<Film> loadFilms() throws Exception {
         try (InputStream in = openFilmsInput()) {
             if (in == null) throw new IllegalStateException("Cannot find films.txt in resources or filesystem.");
             return FilmsParser.parse(in);

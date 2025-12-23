@@ -12,6 +12,10 @@ public class Movie extends Film {
         this.duration = duration;
     }
 
+    public boolean isBetween(LocalTime min, LocalTime max) {
+        return duration.isAfter(min) && duration.isBefore(max);
+    }
+
     public LocalTime getDuration() { return duration; }
 
     @Override

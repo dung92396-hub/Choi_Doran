@@ -1,6 +1,7 @@
 package Netflix;
 
 import java.io.File;
+import java.time.LocalDate;
 import java.util.*;
 import java.util.function.Function;
 import java.util.stream.Collectors;
@@ -35,28 +36,34 @@ public class NetflixPlatform {
     // ================== 20 phương thức rỗng: hãy viết logic theo yêu cầu trong comment ==================
 
     // 1) YÊU CẦU: Lọc danh sách phim theo thể loại (genre) và trả về danh sách mới, sắp xếp theo ngày phát hành tăng dần
+    // stream(), filter(), sort(), Comparator, comparing()
     public List<Film> filterByGenre(Genre genre) {
         return this.films
                 .stream()
                 .filter(film -> film.getGenre().equals(genre))
+                .sorted(Comparator.comparing(Film::getReleaseDate))
                 .toList();
     }
 
     // 2) YÊU CẦU: Tìm phim theo mã (code) trả về Optional<Film>
     public Optional<Film> findByCode(String code) {
-        // TODO: implement
         return this.films
                 .stream()
-                .filter(film -> film.getCode().equals(code))
+                .filter(f -> f.getCode().equals(code))
                 .findFirst();
     }
 
-    // 3) YÊU CẦU: Lọc phim có điểm score10 >= minScore, trả về danh sách mới, sắp xếp theo score10 giảm dần, rồi theo tên
+    // 3) YÊU CẦU: Lọc phim có điểm score10 >= minScore, trả về danh sách mới, sắp xếp theo score10 giảm dần, rồi theo tên tăng dần
     public List<Film> filterByScore(double minScore) {
+        // thenComparing: so sanh sau khi 2 hay nhieu phan tu bi trung tieu chi lan truoc
         return this.films
                 .stream()
-                .filter(film -> film.getScore10() >= minScore)
-                .sorted(Comparator.comparing(Film::getScore10, Comparator.reverseOrder()).thenComparing(Film::getName))
+                .filter(f -> f.getScore10() >= minScore)
+                .sorted(
+                        Comparator.comparing(
+                                Film::getScore10,
+                                Comparator.reverseOrder()).
+                                thenComparing(Film::getName))
                 .toList();
     }
 
@@ -99,20 +106,17 @@ public class NetflixPlatform {
         return null;
     }
 
-    // 9) YÊU CẦU: Tìm top N phim có score10 cao nhất, nếu bằng điểm thì ưu tiên ngày phát hành gần đây hơn
+    // 9) YÊU CẦU: Tìm n phim đầu tiên có score10 cao nhất
     public List<Film> topNByScore(int n) {
         return films
                 .stream()
-                .sorted(Comparator
-                        .comparing(Film::getScore10)
-                        .thenComparing(Film::getReleaseDate))
+                .sorted(Comparator.comparing(Film::getScore10, Comparator.reverseOrder()))
                 .limit(n)
                 .toList();
     }
 
     // 10) YÊU CẦU: Trả về Map<String, Film> ánh xạ code -> Film (nếu trùng code thì lấy phim có score10 cao hơn)
     public Map<String, Film> mapByCodePreferHigherScore() {
-        // TODO: implement using merge logic
         return new HashMap<>();
     }
 
@@ -140,38 +144,50 @@ public class NetflixPlatform {
 
     // 14) YÊU CẦU: Dùng TreeMap<Genre, List<Film>> sắp xếp key theo Genre tự nhiên, value là danh sách phim trong từng genre sắp xếp theo tên
     public Map<Genre, List<Film>> filmsByGenreSortedByName() {
-        // TODO: implement using TreeMap
-        return new TreeMap<>();
+        return films
+                .stream()
+                .sorted(Comparator.comparing(Film::getName))
+                .collect(Collectors.groupingBy(
+                        Film::getGenre,
+                        TreeMap::new,
+                        Collectors.toList()
+                ));
     }
 
     // 15) YÊU CẦU: Trả về Map<Boolean, List<Film>> partition theo điều kiện: tuổi yêu cầu >= 18
     public Map<Boolean, List<Film>> partitionAdultRequired() {
-        // TODO: implement
         return new HashMap<>();
     }
 
     // 16) YÊU CẦU: Tìm tất cả Movie có thời lượng trong khoảng [min, max] (LocalTime)
-    public List<Movie> moviesByDurationBetween(java.time.LocalTime min, java.time.LocalTime max) {
-        // TODO: implement
-        return Collections.emptyList();
+    public List<Film> moviesByDurationBetween(java.time.LocalTime min, java.time.LocalTime max) {
+        return films
+                .stream()
+                .filter(f -> ((Movie) f).isBetween(min, max))
+                .toList();
     }
 
     // 17) YÊU CẦU: Trả về Map<Integer, Set<String>>: tuổi yêu cầu -> set mã phim
     public Map<Integer, Set<String>> codesByAgeRequired() {
-        // TODO: implement
-        return new HashMap<>();
+        return films.stream()
+                .collect(Collectors.groupingBy(
+                        Film::getAgeRequired,
+                        Collectors.mapping(Film::getCode, Collectors.toCollection(HashSet::new))
+                ));
     }
 
     // 18) YÊU CẦU: Trả về danh sách mới gồm các phim phát hành trong khoảng [from, to], sắp xếp theo quốc gia, rồi theo ngày phát hành
-    public List<Film> releasedBetween(java.time.LocalDate from, java.time.LocalDate to) {
-        // TODO: implement
-        return Collections.emptyList();
+    public List<Film> releasedBetween(LocalDate from, LocalDate to) {
+        return films
+                .stream()
+                .filter(f -> f.isBetween(from, to))
+                .sorted(Comparator.comparing(Film::getCountry).thenComparing(Film::getReleaseDate))
+                .toList();
     }
 
     // 19) YÊU CẦU: Dùng HashMap<Country, Long> đếm số Movie theo từng quốc gia (bỏ qua Series)
     public Map<Country, Long> countMoviesByCountry() {
-        // TODO: implement
-        return new HashMap<>();
+        return null;
     }
 
     // 20) YÊU CẦU: Tạo TreeMap<String, Film> key = name (không phân biệt hoa thường), value = Film có ngày phát hành mới nhất cho mỗi name
@@ -180,4 +196,3 @@ public class NetflixPlatform {
         return new TreeMap<>(String.CASE_INSENSITIVE_ORDER);
     }
 }
-

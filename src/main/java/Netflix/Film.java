@@ -25,6 +25,10 @@ public abstract class Film {
         this.country = country;
     }
 
+    public boolean isBetween(LocalDate min, LocalDate max) {
+        return releaseDate.isAfter(min) && releaseDate.isBefore(max);
+    }
+
     public String getName() { return name; }
     public String getCode() { return code; }
     public double getStarRating() { return starRating; }
