@@ -18,6 +18,7 @@ public final class FilmsParser {
         try (BufferedReader br = new BufferedReader(new InputStreamReader(in))) {
             String line;
             int lineNo = 0;
+            int errorCount = 0;
             while ((line = br.readLine()) != null) {
                 lineNo++;
                 line = line.trim();
@@ -26,9 +27,14 @@ public final class FilmsParser {
                     Film f = parseLine(line);
                     if (f != null) result.add(f);
                 } catch (Exception ex) {
-                    // skip bad line but continue
-                    System.err.println("Cannot parse line " + lineNo + ": " + line + " => " + ex.getMessage());
+                    // Log detailed error but continue parsing
+                    errorCount++;
+                    System.err.println("❌ Line " + lineNo + ": " + ex.getMessage());
+                    System.err.println("   Data: " + line);
                 }
+            }
+            if (errorCount > 0) {
+                System.err.println("\n⚠️  Total errors: " + errorCount + " lines skipped");
             }
         }
         return result;

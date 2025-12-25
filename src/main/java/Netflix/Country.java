@@ -4,14 +4,8 @@ public enum Country {
     VIET_NAM,
     NHAT_BAN,
     HAN_QUOC,
-    HOA_KY,
-    ANH,
+    MY,
     PHAP,
-    TRUNG_QUOC,
-    DUC,
-    Y,
-    TAY_BAN_NHA,
-    INDIA,
-    KHAC
+    THAI_LAN,
+    NGA
 }
-

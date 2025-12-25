@@ -15,6 +15,10 @@ public class ReferenceBook extends Book {
         acts = new ArrayList<>();
     }
 
+    public int totalOfPageNumber() {
+        return this.acts.stream().mapToInt(Act::getPageNum).sum();
+    }
+
     public int maxActPageNumber() {
         return acts
                 .stream()
