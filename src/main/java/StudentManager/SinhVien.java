@@ -2,6 +2,7 @@ package StudentManager;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class SinhVien {
     private Long mssv;
@@ -45,13 +46,13 @@ public class SinhVien {
      *    • Lọc ra những môn đăng kí trùng tên giảng viên
      *    • Lọc ra những môn đăng kí có ca học yêu cầu (ca 1, 2, 3, 4 hoặc 5)
      *    • Lọc ra n môn đăng kí có điểm tổng cao nhất
+     *    • Lọc ra môn đăng kí có ca học trễ nhất (⚠ khó)
      *
      * ┌─────────────────────────────────────────────────────────────────────────┐
      * │ 2. MAX / MIN                                                            │
      * └─────────────────────────────────────────────────────────────────────────┘
      *    • Tìm ra môn đăng kí có điểm tổng cao nhất
      *    • Tìm ra môn đăng kí có điểm tổng thấp nhất
-     *    • Tìm ra môn đăng kí có ca học trễ nhất (⚠ khó)
      *
      * ┌─────────────────────────────────────────────────────────────────────────┐
      * │ 3. TÍNH TOÁN (CALCULATION)                                              │
@@ -89,6 +90,12 @@ public class SinhVien {
                 .stream()
                 .filter(monDangKi -> monDangKi.getMonHoc().getMonThucHanh() != null)
                 .toList();
+    }
+
+    public double diemTrungBinh() {
+        return monDangKis
+                .stream()
+                .collect(Collectors.averagingDouble(MonDangKi::getDiemTrungBinhTongKet));
     }
 
 

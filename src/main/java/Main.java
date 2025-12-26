@@ -91,18 +91,11 @@ public class Main {
     }
 
     public static void main(String[] args) {
-        // Create demo data
-        OrderManager manager = init();
 
-        List<Main> users = new ArrayList<>();
-        users.add(new Main("Phuc", 2005));
-        users.add(new Main("Dang", 2005));
-        users.add(new Main("Phat", 2005));
-        users.add(new Main("Huy", 2006));
-        users.add(new Main("A", 2006));
+        List<Integer> nums = new ArrayList<>(List.of(1, 2, 3, 4, 5));
+        System.out.println(nums.stream().collect(Collectors.averagingDouble(Integer::valueOf)));
 
-        Set<Main> set = new TreeSet<>(Comparator.comparing(Main::getName).thenComparingInt(Main::getYear));
-        set.addAll(users);
-        System.out.println(set);
+
+
     }
 }
