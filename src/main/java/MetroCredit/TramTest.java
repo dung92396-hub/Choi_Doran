@@ -1,5 +1,8 @@
 package MetroCredit;
 
+import java.util.List;
+import java.util.Map;
+
 public class TramTest {
     public static void main(String[] args) {
         CustomerManager customerManager = new CustomerManager();
@@ -7,9 +10,20 @@ public class TramTest {
 
 
         // test o day nha
+        var t1 = customerManager.getCreditsByType(Type.ONE_WAY);
+        var t2 = customerManager.getCustomer(2).totalCredit();
+        System.out.println(t2);
+    }
 
+    public static <E> void printData(List<E> data) {
+        data.forEach(System.out::println);
+    }
 
-
+    public static <K, V> void printData(Map<K, V> data) {
+        data.forEach((k, v) -> {
+            System.out.println(k);
+            System.out.println(v);
+        });
     }
 
     public static void init(CustomerManager customerManager) {

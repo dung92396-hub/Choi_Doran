@@ -1,5 +1,7 @@
 package MetroCredit;
 
+import java.util.List;
+
 public class Credit {
     private Long creditID;
     private Type type;
@@ -32,7 +34,7 @@ public class Credit {
     }
 
     public double cost() {
-        return Tram.lengthOfTrams(startPoint, endPoint) * this.PRICE;
+        return Math.abs(Tram.lengthOfTrams(startPoint, endPoint) * this.PRICE);
     }
 
     public Location getStartPoint() {
@@ -49,5 +51,24 @@ public class Credit {
 
     public void setEndPoint(Location endPoint) {
         this.endPoint = endPoint;
+    }
+
+    @Override
+    public String toString() {
+        return String.format("┌─────────────────────┬────────────────────────────────┐\n" +
+                             "│ %-19s │ %-30s │\n" +
+                             "├─────────────────────┼────────────────────────────────┤\n" +
+                             "│ %-19s │ %-30d │\n" +
+                             "│ %-19s │ %-30s │\n" +
+                             "│ %-19s │ %-30s │\n" +
+                             "│ %-19s │ %-30s │\n" +
+                             "│ %-19s │ %-30.2f │\n" +
+                             "└─────────────────────┴────────────────────────────────┘",
+                "Credit Information", "",
+                "Credit ID", this.creditID,
+                "Type", this.type,
+                "Start Point", this.startPoint,
+                "End Point", this.endPoint,
+                "Cost", this.cost());
     }
 }

@@ -4,6 +4,30 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class Tram {
+    private Location location;
+    private int position;
+
+    public Tram(Location location, int position) {
+        this.location = location;
+        this.position = position;
+    }
+
+    public Location getLocation() {
+        return location;
+    }
+
+    public void setLocation(Location location) {
+        this.location = location;
+    }
+
+    public int getPosition() {
+        return position;
+    }
+
+    public void setPosition(int position) {
+        this.position = position;
+    }
+
     private static Map<Location, Integer> init() {
         Map<Location, Integer> trams = new HashMap<>();
         trams.put(Location.SUOI_TIEN, 1);
@@ -31,5 +55,18 @@ public class Tram {
     public static int lengthOfTrams(Location start, Location end) {
         var trams = init();
         return trams.get(end) - trams.get(start);
+    }
+
+    @Override
+    public String toString() {
+        return String.format("┌─────────────────────┬────────────────────────────────┐\n" +
+                             "│ %-19s │ %-30s │\n" +
+                             "├─────────────────────┼────────────────────────────────┤\n" +
+                             "│ %-19s │ %-30s │\n" +
+                             "│ %-19s │ %-30d │\n" +
+                             "└─────────────────────┴────────────────────────────────┘",
+                "Tram Information", "",
+                "Location", this.location,
+                "Position", this.position);
     }
 }
