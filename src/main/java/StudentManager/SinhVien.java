@@ -84,6 +84,15 @@ public class SinhVien {
      * ═══════════════════════════════════════════════════════════════════════════
      */
 
+    public List<MonDangKi> locMonDangKiCoCaThucHanh(CaHoc caHoc) {
+        return monDangKis
+                .stream()
+                .filter(monDangKi -> monDangKi.getMonHoc().getMonThucHanh() != null)
+                .toList();
+    }
+
+
+
     public Long getMssv() {
         return mssv;
     }

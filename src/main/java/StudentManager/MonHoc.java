@@ -34,7 +34,7 @@ public class MonHoc {
         this.tenMon = tenMon;
     }
 
-    public MonHoc isMonThucHanh() {
+    public MonHoc getMonThucHanh() {
         return monThucHanh;
     }
 
