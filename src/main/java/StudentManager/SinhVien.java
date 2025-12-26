@@ -1,7 +1,6 @@
 package StudentManager;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 import java.util.stream.Collectors;
 
 public class SinhVien {
@@ -85,19 +84,52 @@ public class SinhVien {
      * ═══════════════════════════════════════════════════════════════════════════
      */
 
-    public List<MonDangKi> locMonDangKiCoCaThucHanh(CaHoc caHoc) {
-        return monDangKis
-                .stream()
-                .filter(monDangKi -> monDangKi.getMonHoc().getMonThucHanh() != null)
-                .toList();
+    public boolean sameLastName(String lastName) {
+        String[] str = hoVaTen.split(" ");
+        int n = str.length;
+        return str[n - 1].equals(lastName);
+
+        // Ngo Gia Huy
+        // .split(" ")
+        // ["Ngo", "Gia", "Huy"]
+        // str[n - 1] = "Huy"
     }
 
-    public double diemTrungBinh() {
+    public int soMonDangKy() {
+        return this.monDangKis.size();
+    }
+
+    public double trungBinhMon() {
         return monDangKis
                 .stream()
                 .collect(Collectors.averagingDouble(MonDangKi::getDiemTrungBinhTongKet));
     }
 
+    public List<MonDangKi> xapXepMonTheoCaHoc() {
+        return monDangKis
+                .stream()
+                .sorted((o1, o2) -> o1.comparingTime(o2.getCaHoc()))
+                .toList();
+    }
+
+    public List<MonDangKi> sort() {
+        return monDangKis
+                .stream()
+                .sorted(Comparator.comparing(
+                        MonDangKi::getDiemTrungBinhTongKet)
+                        .reversed())
+                .toList();
+    }
+
+    public Set<MonDangKi> sort2() {
+        var comp = Comparator.comparing(
+                MonDangKi::getDiemTrungBinhTongKet,
+                Comparator.reverseOrder());
+        TreeSet<MonDangKi> treeSet = new TreeSet<>(comp);
+        return monDangKis
+                .stream()
+                .collect(Collectors.toCollection(() -> treeSet));
+    }
 
 
     public Long getMssv() {

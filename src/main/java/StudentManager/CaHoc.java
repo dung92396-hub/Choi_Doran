@@ -2,11 +2,17 @@ package StudentManager;
 
 public class CaHoc {
     private NgayTrongTuan ngayTrongTuan;
-    private CaHoc caHoc;
+    private ThoiGianHoc thoiGianHoc;
 
-    public CaHoc(NgayTrongTuan ngayTrongTuan, CaHoc caHoc) {
+    public CaHoc(NgayTrongTuan ngayTrongTuan, ThoiGianHoc thoiGianHoc) {
         this.ngayTrongTuan = ngayTrongTuan;
-        this.caHoc = caHoc;
+        this.thoiGianHoc = thoiGianHoc;
+    }
+
+    public int comparingTime(ThoiGianHoc thoiGianHoc) {
+        if (thoiGianHoc.getEndTime().isBefore(this.thoiGianHoc.getStartTime())) return -1;
+        if (thoiGianHoc.getStartTime().isAfter(this.thoiGianHoc.getStartTime())) return 1;
+        return 0;
     }
 
     public NgayTrongTuan getNgayTrongTuan() {
@@ -17,11 +23,11 @@ public class CaHoc {
         this.ngayTrongTuan = ngayTrongTuan;
     }
 
-    public CaHoc getCaHoc() {
-        return caHoc;
+    public ThoiGianHoc getThoiGianHoc() {
+        return thoiGianHoc;
     }
 
-    public void setCaHoc(CaHoc caHoc) {
-        this.caHoc = caHoc;
+    public void setCaHoc(ThoiGianHoc caHoc) {
+        this.thoiGianHoc = caHoc;
     }
 }

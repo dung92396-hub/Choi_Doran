@@ -18,6 +18,12 @@ public enum ThoiGianHoc {
         this.endTime = endTime;
     }
 
+    public int comparingTime(ThoiGianHoc time) {
+        if (time.getEndTime().isBefore(this.startTime)) return -1;
+        if (time.getStartTime().isAfter(this.endTime)) return 1;
+        return 0;
+    }
+
     public LocalTime getStartTime() {
         return startTime;
     }

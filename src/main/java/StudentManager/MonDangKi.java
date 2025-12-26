@@ -13,6 +13,14 @@ public class MonDangKi {
         this.diemTrungBinhTongKet = diemTrungBinhTongKet;
     }
 
+    public ThoiGianHoc thoiGianHoc() {
+        return caHoc.getThoiGianHoc();
+    }
+
+    public int comparingTime(CaHoc caHoc) {
+        return caHoc.getThoiGianHoc().comparingTime(caHoc.getThoiGianHoc());
+    }
+
     public boolean isSameCode(MonDangKi other) {
         return other.getMonHoc().getMaMon().equals(this.monHoc.getMaMon());
     }

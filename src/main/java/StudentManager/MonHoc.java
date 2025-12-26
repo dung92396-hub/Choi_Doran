@@ -1,5 +1,7 @@
 package StudentManager;
 
+import java.util.Objects;
+
 public class MonHoc {
     private String maMon;           // Mã môn
     private String tenMon;          // Tên môn
@@ -15,6 +17,18 @@ public class MonHoc {
         this.maMon = maMon;
         this.tenMon = tenMon;
         this.monThucHanh = null;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == null) return false;
+        MonHoc m = (MonHoc) obj;
+        return maMon.equals(m.getMaMon());
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(maMon);
     }
 
     // Getters and Setters
