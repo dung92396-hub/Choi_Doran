@@ -35,6 +35,32 @@ public class Leetcode36 {
         return true;
     }
 
+    public boolean isValid2(char[][] board) {
+        HashSet<Character>[] rows = new HashSet[9];
+        HashSet<Character>[] cols = new HashSet[9];
+        HashSet<Character>[] boxs = new HashSet[9];
+        for (int i = 0; i < 9; i++) {
+            rows[i] = new HashSet<>();
+            cols[i] = new HashSet<>();
+            boxs[i] = new HashSet<>();
+
+
+        }
+        for (int i = 0; i < 9; i++) {
+            for (int j = 0; j <9 ; j++) {
+                char val = board[i][j];
+                if (val == '.') continue;
+
+                if (!rows[i].add(val)) return false;
+                if (!cols[j].add(val)) return false;
+
+            }
+
+        }
+        return true;
+    }
+
+
     public static void main(String[] args) {
         char[][] boardTrue = {
                 {'5', '3', '.', '.', '7', '.', '.', '.', '.'},
