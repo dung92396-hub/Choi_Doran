@@ -1,20 +1,21 @@
-# SpringBoot Document
-## Controller
+## Cài đặt `Lombok`
+1. Thêm dependency vào `pom.xml`
 
-<p>Get all users using GET method</p>
-
-```java
-@GetMapping('/users')
-public ResponseEntity<?> getAllUsers() {
-    return userServices.getAllUsers();
-}
+```xml
+<dependency>
+    <groupId>org.projectlombok</groupId>
+    <artifactId>lombok</artifactId>
+    <version>1.18.42</version>
+</dependency>
 ```
 
-<p></p>
+2. Reload all Maven project
 
-### 4. Mẹo Nhỏ Để README Thu Hút Hơn
-* **Thêm Visual:** Một hình ảnh giao diện hoặc một file GIF demo tính năng sẽ giá trị hơn ngàn lời nói.
-* **Giữ sự ngắn gọn:** Đừng viết văn xuôi quá dài dòng. Dùng gạch đầu dòng bất cứ khi nào có thể.
-* **Cập nhật thường xuyên:** README lỗi thời (sai lệnh cài đặt) sẽ gây ức chế cho người mới tiếp cận.
+## Repo SpringBoot
+**Employee Management**
+<br>
+https://github.com/crni99/Student-Management-System/tree/main
 
-Bạn có muốn tôi tạo một file mẫu `README.md` cụ thể cho một loại dự án nào (ví dụ: Web App, Library, hay Tool) không?
+**Employee Management**
+<br>
+https://github.com/KrishanMihiranga/employee-ms/tree/main
