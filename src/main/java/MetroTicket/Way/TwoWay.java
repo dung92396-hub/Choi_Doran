@@ -1,8 +1,18 @@
-package MetroTicket;
+package MetroTicket.Way;
 
-public class TwoWay implements Ticket {
+import MetroTicket.Ticket;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+
+
+@Getter
+@AllArgsConstructor
+public class TwoWay extends Ticket {
+
+    private Ticket person;
+
     @Override
-    public void execute() {
-        System.out.println("Da mua ve 2 chieu ");
+    public double execute() {
+        return (DEFAULT_PRICE * 2 * 0.8) * person.execute();
     }
 }

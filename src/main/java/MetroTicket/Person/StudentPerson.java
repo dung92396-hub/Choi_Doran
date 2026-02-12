@@ -1,4 +1,10 @@
-package MetroTicket;
+package MetroTicket.Person;
 
-public class StudentPerson {
+import MetroTicket.Ticket;
+
+public class StudentPerson extends Ticket {
+    @Override
+    public double execute() {
+        return 0.64;
+    }
 }

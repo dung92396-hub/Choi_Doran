@@ -1,4 +1,10 @@
 package MetroTicket.Person;
 
-public class SpecialPerson {
+import MetroTicket.Ticket;
+
+public class SpecialPerson extends Ticket {
+    @Override
+    public double execute() {
+        return 0;
+    }
 }

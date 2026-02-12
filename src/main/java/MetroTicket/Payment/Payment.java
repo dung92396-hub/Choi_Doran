@@ -1,4 +1,5 @@
 package MetroTicket.Payment;
 
-public class Payment {
+public interface Payment {
+    public void execute();
 }
