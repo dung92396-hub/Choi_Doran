@@ -1,5 +1,0 @@
-package Builder;
-
-public enum Education {
-    PRIMARY_SCHOOL, SECONDARY_SCHOOL, HIGH_SCHOOL, UNIVERSITY, UNDERGRADUATE
-}
